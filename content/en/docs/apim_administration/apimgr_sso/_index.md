@@ -55,6 +55,8 @@ When API Manager is configured for SSO, the following events occur during authen
     * For SSO login, access the API Manager on the SSO URL (for example, `https://FQDN:8075/api/portal/v1.3/sso/login/`).
 
     The SSO login URL must be used even if the user has already logged in using SSO (for example, if they have already logged in to API Portal or Decision Insight).
+    
+    Note: - To enable a user to become a member of multiple API Manager organizations, the 1.4 version of the api must be used (`https://FQDN:8075/api/portal/v1.4/sso/login/`) in the SSO login step. 
 
 2. API Manager builds a SAML Authentication Request message and sends it to the IdP.
 3. The IdP receives the request and checks if there is an active session for the user.
