@@ -56,6 +56,18 @@ The IdP does not need to provide this value. If it does and the IdP attribute ha
 
 ### Optional attributes
 
+#### `orgs2Role`
+
+This property is only available with the 1.4 version of the api. It provides the ability to assign a user membership to multiple organizations in API Manager. The format required for this property is as follows:
+`[{"organization1Name": "role"},{"organization2Name": "role"},.............]`
+
+the role value can be either `user` or `oadmin`. 
+
+The IdP does not need to provide this value. If it does and the IdP attribute has a different name, you can use a RenameMapping to transform it to a `orgsRole` attribute. If the IDP does not provide the value associated with the orgs2Role at all, you can use an OutputAttribute to assign multiple organization membership to the logged in user. For example:
+```
+<OutputAttribute name="orgs2Role">[{"organization1Name": "user"}]</OutputAttribute>
+```
+
 #### `mail`
 
 The email address associated with the logged in user.
