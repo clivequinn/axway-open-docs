@@ -67,6 +67,13 @@ The IdP does not need to provide this value. If it does and the IdP attribute ha
 ```
 <OutputAttribute name="orgs2Role">[{"organization1Name": "user"}]</OutputAttribute>
 ```
+{{< alert title="Note" color="primary" >}}
+If setting the orgs2Role attribute in the IDP then you may need to escape the quote characters. For example:
+```
+[{\"organization1Name\": \"user\"}]
+```
+{{< /alert >}}
+
 
 #### `mail`
 
