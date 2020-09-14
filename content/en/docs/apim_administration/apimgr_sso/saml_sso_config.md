@@ -278,7 +278,7 @@ To change the default domain name to a sample domain name such as `axway.int`:
 
 1. Create a file called `jvm.xml` in the folder `INSTALL_DIR/apigateway/conf` (if it does not already exist).
 2. Add the following setting:
-API Portal v1.2
+
    ```
    <ConfigurationFragment>
      <VMArg name="-Dcom.axway.sso.domain.name=axway.int" />
