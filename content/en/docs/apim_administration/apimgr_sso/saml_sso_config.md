@@ -70,7 +70,7 @@ The following sample files are included:
     * Sample Shibboleth configuration files to help you configure Shibboleth as an IdP. These configuration files are part of the Shibboleth installation and can be found in the respective Shibboleth installation folders. For more information on Shibboleth, see the [Shibboleth documentation](https://wiki.shibboleth.net/confluence/display/IDP30/Home).
     * Sample `service-provider.xml` where the IdP is specified by file using `idp.xml`.
     * Sample `idp.xml`.
-    * `keycloak` folder:
+* `keycloak` folder:
     * Sample `service-provider.xml` file that uses a URL to specify the IdP.
     * Sample `service-provider-apiportal.xml` for configuring API Portal SSO. For more details, see
         [Configure API Portal single sign-on](/docs/apim_administration/apiportal_sso/sso_config/).
@@ -287,6 +287,19 @@ To change the default domain name to a sample domain name such as `axway.int`:
 
 {{< alert title="Note" color="primary" >}}Do not prefix the domain name with a period (for example, do not use the value `.axway.int`). {{< /alert >}}
 
-## Step 6 – Restart API Gateway
+## Step 6 – Configure the orgs2Role header using a policy (optional)
+
+Assigning users membership of multiple API Manager organizations can be achieved via the orgs2role attribute, see [orgs2role attribute](/docs/apim_administration/apimgr_sso/sso_mapping/#orgs2role). Alternatively an API Gateway policy can be setup to achieve this. This policy is invoked at runtime after the saml response from the identity provider is verified by the service provider(in this case API Manager). The API Manager runtime will only accept this policy's output if its successful and has the `orgs2Role` value set in the http headers. This can be achieved using existing API Gateway filters for example see [Add HTTP Header Filter](/docs/apim_policydev/apigw_polref/conversion_common/#add-http-header-filter) or by setting the header programmatically. 
+
+To setup this policy, perform the following steps in Policy Studio:
+
+1. Open the configuration of your API Manager-enabled API Gateway instance. For example, select **File > New Project from an API Gateway instance**.
+2. Navigate to **Server Settings > API Manager > Identity Provider** in the Policy Studio tree.
+3. Choose the policy you want to invoke in the **Single sign on policy (optional)** field.
+
+{{< alert title="Note" color="primary" >}}Using this policy will take precedence over any existing value you may have for the `orgs2Role` attribute in the identify provider configuration or the service provider xml file.{{< /alert >}}
+
+
+## Step 7 – Restart API Gateway
 
 Finally, you must restart the Node Manager and the API Gateway instance to enable the changes in `service-provider.xml` and `jvm.xml` files to be applied. After the restart, your users will be able to log in to API Manager using SSO.
