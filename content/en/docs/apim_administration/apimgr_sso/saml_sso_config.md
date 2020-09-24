@@ -287,18 +287,19 @@ To change the default domain name to a sample domain name such as `axway.int`:
 
 {{< alert title="Note" color="primary" >}}Do not prefix the domain name with a period (for example, do not use the value `.axway.int`). {{< /alert >}}
 
-## Step 6 – Configure the orgs2Role header using a policy (optional)
+## Step 6 – Configure the `orgs2Role` header using a policy (optional)
 
-Assigning users membership of multiple API Manager organizations can be achieved via the orgs2role attribute, see [orgs2role attribute](/docs/apim_administration/apimgr_sso/sso_mapping/#orgs2role). Alternatively an API Gateway policy can be setup to achieve this. This policy is invoked at runtime after the saml response from the identity provider is verified by the service provider(in this case API Manager). The API Manager runtime will only accept this policy's output if its successful and has the `orgs2Role` value set in the http headers. This can be achieved using existing API Gateway filters for example see [Add HTTP Header Filter](/docs/apim_policydev/apigw_polref/conversion_common/#add-http-header-filter) or by setting the header programmatically. 
+You can assign user membership to multiple API Manager organizations by using the [`orgs2role`](/docs/apim_administration/apimgr_sso/sso_mapping/#orgs2role) attribute or by configuring an API Gateway policy.
 
-To setup this policy, perform the following steps in Policy Studio:
+The policy is invoked at runtime after the SAML response from the identity provider is verified by the service provider (in this case, API Manager). The API Manager runtime will only accept the output of the policy if it is successful and it has the `orgs2Role` value set in the HTTP headers. To set the header, you can use existing API Gateway filters, for example [Add HTTP Header Filter](/docs/apim_policydev/apigw_polref/conversion_common/#add-http-header-filter), or you can set the header programmatically.
+
+To configure a policy, perform the following steps in Policy Studio:
 
 1. Open the configuration of your API Manager-enabled API Gateway instance. For example, select **File > New Project from an API Gateway instance**.
 2. Navigate to **Server Settings > API Manager > Identity Provider** in the Policy Studio tree.
 3. Choose the policy you want to invoke in the **Single sign on policy (optional)** field.
 
-{{< alert title="Note" color="primary" >}}Using this policy will take precedence over any existing value you may have for the `orgs2Role` attribute in the identify provider configuration or the service provider xml file.{{< /alert >}}
-
+{{< alert title="Note" color="primary" >}}Using this policy will take precedence over any existing value you might have for the `orgs2Role` attribute in the identify provider configuration or the `service-provider.xml` file.{{< /alert >}}
 
 ## Step 7 – Restart API Gateway
 
