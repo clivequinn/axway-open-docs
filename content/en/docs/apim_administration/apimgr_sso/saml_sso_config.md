@@ -291,7 +291,19 @@ To change the default domain name to a sample domain name such as `axway.int`:
 
 You can assign user membership to multiple API Manager organizations by using the [`orgs2role`](/docs/apim_administration/apimgr_sso/sso_mapping/#orgs2role) attribute or by configuring an API Gateway policy.
 
-The policy is invoked at runtime after the SAML response from the identity provider is verified by the service provider (in this case, API Manager). The API Manager runtime will only accept the output of the policy if it is successful and it has the `orgs2Role` value set in the HTTP headers. To set the header, you can use existing API Gateway filters, for example [Add HTTP Header Filter](/docs/apim_policydev/apigw_polref/conversion_common/#add-http-header-filter), or you can set the header programmatically.
+The policy is invoked at runtime after the SAML response from the identity provider is verified by the service provider (in this case, API Manager). The API Manager runtime will only accept the output of the policy if it is successful and it has the `orgs2Role` value set in the HTTP headers. To set the header, you can use existing API Gateway filters, for example [Add HTTP Header Filter](/docs/apim_policydev/apigw_polref/conversion_common/#add-http-header-filter), or you can set the header programmatically. The following message attributes are available(if set) to the policy developer to aid with the decision making process of setting the `orgs2Role`header:
+
+```
+user.email
+user.telephone.number
+user.department
+user.description
+user.userfullname
+orgs2Role
+authentication.subject.role
+authentication.subject.id
+authentication.organization.name
+```
 
 To configure a policy, perform the following steps in Policy Studio:
 
