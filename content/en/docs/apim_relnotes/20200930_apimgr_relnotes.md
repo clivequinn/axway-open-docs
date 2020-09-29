@@ -55,7 +55,7 @@ The multi-orgs feature is available with the 1.4 version of the API only, meanin
 
 This feature is forward compatible, the API 1.4 will work with single-org users, but not backward compatible, you cannot configure multi-orgs in the API 1.4, then revert it to the API 1.3.
 
-The new **API Manager 7.7 API 1.4** is available in OAS3 format on the [Axway Documentation portal](https://docs.axway.com/category/api). 
+The new **API Manager 7.7 API 1.4** is available in OAS3 format on the [Axway Documentation portal](https://docs.axway.com/category/api).
 
 #### Managing multi-orgs users
 
