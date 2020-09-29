@@ -47,7 +47,7 @@ Validated support for the following versions of Oracle Databases:​
 
 ### User membership in multiple organizations
 
-API Manager now enables a user to create a membership in multiple organizations (multi-orgs). User accounts will have different roles in each organization the user is a member of. The following are some important changes implemented to enable this new feature.
+API Manager now enables creating user membership in multiple organizations (multi-orgs). User accounts will have different roles in each organization the user is a member of. The following are some important changes implemented to enable this new feature.
 
 #### API version update
 
@@ -68,7 +68,7 @@ The following are new changes implemented to facilitate the creation and mainten
 * Integration via SSO has changed to facilitate configuring users from an external IDP to multi-orgs. You can use the new setting, `orgs2Role`, to assign a user to multi-orgs. This attribute can be populated via:
     * A direct attribute in the IDP.
     * An LDAP mapping in the service-provider.xml file.
-    * A filter configured in Policy Studio, which allows the `orgs2Role`setting to be overriden.
+    * A filter configured in Policy Studio, which allows the `orgs2Role` setting to be overridden.
 
 For more information on configuring multi-orgs users, see [Configure API Manager Single Sign On](/docs/apim_administration/apimgr_sso/saml_sso_config/).
 
