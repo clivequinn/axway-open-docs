@@ -10,10 +10,6 @@ Watch this video to see how to configure single sign-on based on the Keycloak ex
 
 {{< youtube OsN06SowUAg >}}
 
-## API Manager Single Sign On Multi Org
-
-The September 2020 API Gateway and API Manager 7.7 release provides the capability of a user obtaining membership of multiple API Manager organizations via a new api. For single sign on and integration with the API Manager user interface, SAML endpoints must be updated to use api version 1.4. 
-
 ## Prerequisites
 
 Before you can start to configure API Manager SSO:
@@ -251,7 +247,6 @@ Perform the following steps in Policy Studio:
    * Add a new property. In the **Name** field enter the name `CsrfProtectionFilterFactory.refererWhitelist` and in the **Value** field enter the URL of the IdP (for example, `https://sample_idp_host:8443`).
 9. Deploy the configuration to the API Manager-enabled API Gateway instance.
 
-
 ## Step 4 – Configure SAML endpoint URLs in the IdP
 
 You must configure the SAML endpoints of API Manager in your IdP. Consult the documentation for your IdP for details. The following examples are for Keycloak IdP.
@@ -288,21 +283,21 @@ To change the default domain name to a sample domain name such as `axway.int`:
 
 ## Step 6 – Configure the `orgs2Role` header using a policy (optional)
 
-You can assign user membership to multiple API Manager organizations by using the [`orgs2Role`](/docs/apim_administration/apimgr_sso/sso_mapping/#orgs2role) attribute or by configuring an API Gateway policy.
+You can use the [`orgs2Role`](/docs/apim_administration/apimgr_sso/sso_mapping/#orgs2role) attribute to assign user membership to multiple API Manager organizations, or you can configure an API Gateway policy.
 
-The policy is invoked at runtime after the SAML response from the identity provider is verified by the service provider (in this case, API Manager). The API Manager runtime will only accept the output of the policy if it is successful and it has the `orgs2Role` value set in the HTTP headers. To set the header, you can use existing API Gateway filters, for example [Add HTTP Header Filter](/docs/apim_policydev/apigw_polref/conversion_common/#add-http-header-filter), or you can set the header programmatically. The following message attributes are available(if set) to the policy developer to aid with the decision making process of setting the `orgs2Role`header:
+The policy is invoked at runtime after the SAML response from the identity provider is verified by the service provider (in this case, API Manager). The API Manager runtime will only accept the output of the policy if it is successful and it has the `orgs2Role` value set in the HTTP headers. To set the header, you can use existing API Gateway filters, for example [Add HTTP Header Filter](/docs/apim_policydev/apigw_polref/conversion_common/#add-http-header-filter), or you can set the header programmatically.
 
-```
-user.email
-user.telephone.number
-user.department
-user.description
-user.userfullname
-orgs2Role
-authentication.subject.role
-authentication.subject.id
-authentication.organization.name
-```
+The following message attributes are available to aid with the decision making process of setting the `orgs2Role`header:
+
+* `user.email`
+* `user.telephone.number`
+* `user.department`
+* `user.description`
+* `user.userfullname`
+* `orgs2Role`
+* `authentication.subject.role`
+* `authentication.subject.id`
+* `authentication.organization.name`
 
 To configure a policy, perform the following steps in Policy Studio:
 
@@ -312,9 +307,12 @@ To configure a policy, perform the following steps in Policy Studio:
 
 ### Example policy
 
-1. Use a switch filter to make a decision based on a message attribute. ![Single sign on processing policy](/Images/docbook/images/api_mgmt/sso_processing.png)
-2. Then assign membership via the add header filter. ![Add orgs2Role header](/Images/docbook/images/api_mgmt/sso_addheader.png)
+1. Use a switch filter to make a decision based on a message attribute.
 
+    ![Single sign on processing policy](/Images/docbook/images/api_mgmt/sso_processing.png)
+2. Assign membership via the **Add HTTP Header** filter.
+
+    ![Add orgs2Role header](/Images/docbook/images/api_mgmt/sso_addheader.png)
 
 {{< alert title="Note" color="primary" >}}Using this policy will take precedence over any existing value you might have for the `orgs2Role` attribute in the identify provider configuration or the `service-provider.xml` file.{{< /alert >}}
 
