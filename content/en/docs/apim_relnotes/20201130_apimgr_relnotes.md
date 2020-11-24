@@ -17,9 +17,10 @@ Docker deployment is supported on Linux. For a summary of the system requirement
 
 The following new features and enhancements are available in this update.
 
-### placeholder heading for New features and enhancements
+### Enhanced API Lifecycle Management for Organization Administrators
 
-placeholder text for New features and enhancements
+In the API Gateway and API Manager 7.7 September 2020 release we made it possible for an Organization Administrator to publish and unpublish APIs that were created in their organization without approval from an API Administrator. This was achieved by setting a system property api.manager.orgadmin.selfservice.enabled to true. In this release the following API Lifecycle events: deprecate, undeprecate, upgrade and grant access will be made available to an organization administrator when the system property is set to true.
+
 
 ## Important changes
 
